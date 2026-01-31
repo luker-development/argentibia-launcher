@@ -1,0 +1,30 @@
+{
+  "name": "luker-launcher",
+  "version": "1.0.0",
+  "description": "Argentibia Launcher - Game client manager for Argentibia OT",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder --win --x64",
+    "build:dir": "electron-builder --win --x64 --dir",
+    "dist": "npm run build"
+  },
+  "keywords": [
+    "argentibia",
+    "launcher",
+    "game",
+    "tibia"
+  ],
+  "author": "Argentibia Team",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "axios": "^1.13.2"
+  },
+  "devDependencies": {
+    "electron": "^39.4.0",
+    "electron-builder": "^25.1.8"
+  }
+}

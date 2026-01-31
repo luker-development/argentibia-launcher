@@ -1,0 +1,53 @@
+{
+  "appId": "com.argentibia.launcher",
+  "productName": "ArgentibiaLauncher",
+  "copyright": "Copyright © 2026 Argentibia Team",
+  "directories": {
+    "output": "dist",
+    "buildResources": "build"
+  },
+  "files": [
+    "src/**/*",
+    "assets/**/*",
+    "updater/**/*",
+    "package.json",
+    "!**/*.md",
+    "!**/docs",
+    "!**/.idea/**"
+  ],
+  "extraMetadata": {
+    "main": "src/main.js"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "zip",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "assets/argentibia_icon.ico",
+    "artifactName": "${productName}-${version}-${arch}.${ext}",
+    "requestedExecutionLevel": "asInvoker"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "perMachine": false,
+    "allowElevation": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Argentibia Launcher",
+    "installerIcon": "assets/argentibia_icon.ico",
+    "uninstallerIcon": "assets/argentibia_icon.ico",
+    "deleteAppDataOnUninstall": false,
+    "displayLanguageSelector": false,
+    "menuCategory": "Games",
+    "runAfterFinish": true,
+    "unicode": true,
+    "warningsAsErrors": false
+  }
+}

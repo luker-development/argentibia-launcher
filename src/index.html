@@ -1,0 +1,218 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argentibia Launcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050910;
+            --panel: rgba(10, 16, 27, 0.82);
+            --accent: #d4a94a;
+            --accent-strong: #f0c55f;
+            --text: #e8edf5;
+            --muted: #9aa4b8;
+            --danger: #d0625d;
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            background: radial-gradient(circle at 20% 20%, rgba(212,169,74,0.08), transparent 25%), radial-gradient(circle at 80% 10%, rgba(255,255,255,0.05), transparent 20%), linear-gradient(135deg, #060b14, #0b1220 60%, #050910);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .frame {
+            width: min(1080px, 100%);
+            height: calc(100vh - 40px);
+            background: var(--panel);
+            border: 1px solid rgba(212, 169, 74, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+            position: relative;
+        }
+        .hero {
+            position: relative;
+            min-height: 480px;
+            height: 100%;
+            background: url('../assets/argentibia_ot_launcher.png') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px 28px 22px 28px;
+            isolation: isolate;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(5, 9, 16, 0.55) 0%, rgba(5, 9, 16, 0.35) 35%, rgba(5, 9, 16, 0.82) 100%);
+            z-index: 0;
+        }
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-icon {
+            width: 220px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 6px 18px rgba(0,0,0,0.45));
+        }
+        .cta {
+            position: relative;
+            z-index: 1;
+            align-self: flex-start;
+            margin-top: auto;
+        }
+        .cta button {
+            padding: 14px 22px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(120deg, var(--accent) 0%, var(--accent-strong) 100%);
+            color: #1b1204;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 169, 74, 0.35);
+            transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+        }
+        .cta button:disabled {
+            cursor: wait;
+            filter: grayscale(0.35);
+            opacity: 0.85;
+            box-shadow: none;
+        }
+        .cta button:not(:disabled):hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 36px rgba(212, 169, 74, 0.55);
+        }
+        .status-bar {
+            position: relative;
+            z-index: 1;
+            margin-top: 18px;
+            width: 100%;
+        }
+        .status-text {
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            color: var(--text);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.55);
+        }
+        progress {
+            width: 100%;
+            height: 14px;
+            appearance: none;
+            -webkit-appearance: none;
+            border: 1px solid rgba(212,169,74,0.45);
+            border-radius: 999px;
+            background-color: rgba(0,0,0,0.35);
+            overflow: hidden;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+        }
+        progress::-webkit-progress-bar {
+            background-color: transparent;
+        }
+        progress::-webkit-progress-value {
+            background: linear-gradient(90deg, #c1842d, #f0c55f);
+        }
+        progress::-moz-progress-bar {
+            background: linear-gradient(90deg, #c1842d, #f0c55f);
+        }
+        .install-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .install-path {
+            font-size: 11px;
+            color: var(--muted);
+            word-break: break-all;
+        }
+        .install-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .secondary-btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 169, 74, 0.4);
+            background: rgba(10, 16, 27, 0.75);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: border-color 120ms ease, transform 120ms ease;
+        }
+        .secondary-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+        .secondary-btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+        .footer {
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--muted);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.55);
+        }
+        @media (max-width: 768px) {
+            .frame { height: calc(100vh - 32px); }
+            .hero { min-height: 420px; padding: 22px; }
+            .brand-icon { width: 180px; }
+            .cta button { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="frame">
+    <div class="hero">
+        <div class="top-bar">
+            <!-- Logo removed; hero art already contains branding -->
+        </div>
+
+        <div class="cta">
+            <button id="checkUpdates">Check for Updates / Install</button>
+        </div>
+        <div class="install-row">
+            <div class="install-path" id="installPath">Detecting install path...</div>
+            <div class="install-actions">
+                <button class="secondary-btn" id="choosePath">Choose install folder</button>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <p class="status-text" id="status">Ready.</p>
+            <progress id="progressBar" value="0" max="100"></progress>
+        </div>
+        <div class="footer">Argentibia OT &mdash; slow, deliberate progression for adventurers.</div>
+    </div>
+</div>
+<script src="renderer.js"></script>
+</body>
+
+</html>

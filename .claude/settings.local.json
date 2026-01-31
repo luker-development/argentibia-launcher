@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip:*)",
+      "Bash(test:*)",
+      "Bash(tree:*)",
+      "Bash(du:*)",
+      "Bash(cmp:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(pwsh:*)",
+      "Bash(powershell:*)",
+      "Bash(CSC_IDENTITY_AUTO_DISCOVERY=false npm run build:*)",
+      "Bash(CSC_IDENTITY_AUTO_DISCOVERY=false WIN_SIGNING_CERT_FILE= npm run build:*)",
+      "Bash(timeout 30 npm run build:dir:*)",
+      "Bash(git init:*)"
+    ]
+  }
+}
