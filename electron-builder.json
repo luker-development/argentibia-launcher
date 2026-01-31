@@ -2,6 +2,7 @@
   "appId": "com.argentibia.launcher",
   "productName": "ArgentibiaLauncher",
   "copyright": "Copyright © 2026 Argentibia Team",
+  "publish": null,
   "directories": {
     "output": "dist",
     "buildResources": "build"
