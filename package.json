@@ -1,6 +1,6 @@
 {
   "name": "luker-launcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Argentibia Launcher - Game client manager for Argentibia OT",
   "main": "src/main.js",
   "scripts": {
