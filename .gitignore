@@ -9,6 +9,7 @@ build/
 *.zip
 *.blockmap
 *.yml
+!.github/**/*.yml
 
 # Electron Builder
 .electron-builder-cache/
