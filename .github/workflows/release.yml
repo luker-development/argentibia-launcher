@@ -59,6 +59,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
+            dist/*.exe
             dist/*.zip
             dist/checksums.txt
           draft: false
@@ -72,6 +73,7 @@ jobs:
         with:
           name: windows-installer-${{ steps.version.outputs.VERSION }}
           path: |
+            dist/*.exe
             dist/*.zip
             dist/checksums.txt
           retention-days: 30
