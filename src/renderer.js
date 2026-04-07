@@ -384,8 +384,24 @@ function launchClient(installDir) {
         runningClient = null;
     });
     runningClient.on("exit", (code, signal) => {
-        const reason = signal ? `signal ${signal}` : (code === 0 || code === null ? "closed" : `code ${code}`);
-        logStatus(`Client exited (${reason}).`);
+        if (signal) {
+            logStatus(`Client exited (signal ${signal}).`);
+        } else if (code === 0 || code === null) {
+            logStatus("Client closed.");
+        } else {
+            const uCode = code >>> 0; // normalize Windows exit codes to unsigned 32-bit
+            let msg = `Client crashed (code ${uCode} / 0x${uCode.toString(16).toUpperCase()}).`;
+            if (uCode === 0xC0000135 || uCode === 0xC0000142) {
+                // STATUS_DLL_NOT_FOUND / STATUS_DLL_INIT_FAILED — almost always missing VC++ runtime
+                msg += " A required DLL is missing. Please install Visual C++ 2022 Redistributable (x64): microsoft.com/download/details.aspx?id=48145";
+            } else if (uCode === 0xC0000005) {
+                // STATUS_ACCESS_VIOLATION
+                msg += " Memory error. Try: 1) update GPU drivers, 2) install Visual C++ 2022 Redistributable (x64).";
+            } else {
+                msg += ` Check log in %LOCALAPPDATA%\\ArgentibiaLauncher for details.`;
+            }
+            logStatus(msg);
+        }
         runningClient = null;
     });
 }
