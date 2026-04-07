@@ -31,7 +31,7 @@
       }
     ],
     "icon": "assets/argentibia_icon.ico",
-    "artifactName": "${productName}-${version}-${arch}.${ext}",
+    "artifactName": "${productName}-${arch}.${ext}",
     "requestedExecutionLevel": "asInvoker"
   },
   "nsis": {
