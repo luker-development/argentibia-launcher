@@ -269,13 +269,6 @@ async function extractZip(zipPath, targetDir) {
     });
 
     try {
-        fs.rmSync(finalTarget, { recursive: true, force: true });
-    } catch (err) {
-        console.error("Failed to clear install directory:", err);
-        if (isPermissionError(err)) throw err;
-    }
-
-    try {
         fs.mkdirSync(path.dirname(finalTarget), { recursive: true });
         const entries = fs.readdirSync(tempDir);
         // If the ZIP already contains a root folder named like the game, preserve it; otherwise copy into finalTarget.
